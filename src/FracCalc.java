@@ -1,12 +1,23 @@
+import java.util.*;
 public class FracCalc {
 
     /**
      * Prompts user for input, passes that input to produceAnswer, then outputs the result.
      * @param args - unused
      */
+	
     public static void main(String[] args) 
     {
-        // TODO: Read the input from the user and call produceAnswer with an equation
+    	Scanner console = new Scanner(System.in);
+    	System.out.println("Insert your equation: ");
+    	String equation = console.nextLine();
+    	String output = null;
+    	if (equation != "quit")
+    		output = produceAnswer(equation);
+    		System.out.println(output);
+    	
+    	
+    	        // TODO: Read the input from the user and call produceAnswer with an equation
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
         // Checkpoint 2: Accept user input multiple times.
     }
@@ -18,10 +29,13 @@ public class FracCalc {
      * @return the result of the fraction after it has been calculated.
      *      Example: return ==> "1_1/4"
      */
-    public static String produceAnswer(String input)
+    public static String produceAnswer(String in)
     { 
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
+    	int space = in.indexOf(" ");
+    	String output = in.substring(space+3, in.length());
+    	return output;
         // Checkpoint 2: Return the second operand as a string representing each part.
         //               Example "4/5 * 1_2/4" returns "whole:1 numerator:2 denominator:4".
         // Checkpoint 3: Evaluate the formula and return the result as a fraction.
@@ -30,7 +44,7 @@ public class FracCalc {
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
         
-        return "";
+        
     }
 
     // TODO: Fill in the space below with helper methods
