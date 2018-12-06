@@ -12,9 +12,13 @@ public class FracCalc {
     	System.out.println("Insert your equation: ");
     	String equation = console.nextLine();
     	String output = null;
-    	if (equation != "quit")
+    	while (!(equation.equals("quit")))
+    	{
     		output = produceAnswer(equation);
     		System.out.println(output);
+    		System.out.println("Insert your equation: ");
+    		equation = console.nextLine();
+    	}
     	
     	
     	        // TODO: Read the input from the user and call produceAnswer with an equation
@@ -34,8 +38,32 @@ public class FracCalc {
         // TODO: Implement this function to produce the solution to the input
         // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
     	int space = in.indexOf(" ");
-    	String output = in.substring(space+3, in.length());
-    	return output;
+    	
+    	
+    	String second = in.substring(space+3, in.length());
+    	int underscore = second.indexOf("_");
+    	int slash = second.indexOf("/");
+    	
+    	
+    	if (underscore>0 && slash>0)
+    	{	
+    		String whole = second.substring(0,underscore);
+	    	String numerator = second.substring(underscore+1,slash);
+	    	String denominator = second.substring(slash+1, second.length());
+	    	return "Whole: "+ whole+ " Numerator: " + numerator + " Denominator: " + denominator; 
+    	}
+    	if (underscore<0 && slash<0)
+    	{
+    		String whole = second.substring(0,second.length());
+    		return "Whole: " + whole;
+    	}
+    	if (underscore<0 && slash>0)
+    	{
+    		String numerator = second.substring(0,slash);
+    		String denominator = second.substring(slash+1,second.length());
+    		return "Numerator: " + numerator + " Denominator: " + denominator; 
+    	}
+    	//String output = "Whole : "+whole+" Numerator: "+numerator+" Denominator: "+denominator;
         // Checkpoint 2: Return the second operand as a string representing each part.
         //               Example "4/5 * 1_2/4" returns "whole:1 numerator:2 denominator:4".
         // Checkpoint 3: Evaluate the formula and return the result as a fraction.
@@ -44,7 +72,7 @@ public class FracCalc {
         // Final project: All answers must be reduced.
         //               Example "4/5 * 1_2/4" returns "1_1/5".
         
-        
+       return in; 
     }
 
     // TODO: Fill in the space below with helper methods
