@@ -157,17 +157,24 @@ public class FracCalc {
              answer = whole + num + "/" + denom;
         }
         if (op.equals("*")) {
-             if (firstWhole>0) {
-                    firstNum = firstNum + (firstWhole*firstDenom);               
+             if (firstWhole != 0) {
+                    firstNum = firstNum + (firstWhole*firstDenom); 
+                    firstWhole = 0;
              }
-             if (secondWhole>0) {
-                    secondNum = secondNum + (secondWhole*secondDenom);                     
+             if (secondWhole != 0) {
+                    secondNum = secondNum + (secondWhole*secondDenom);   
+                    secondWhole = 0;
              }
+   
              resultNum = firstNum*secondNum;
              resultDenom = firstDenom*secondDenom;
              num = Integer.toString(resultNum);
              denom = Integer.toString(resultDenom);
              answer = num+ "/" + denom;
+             if (Integer.parseInt(denom)==1)
+             {
+            	 answer=num;
+             }
         }
         if (op.equals("/")) {
              if (firstWhole>0) {
